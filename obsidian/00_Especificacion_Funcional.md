@@ -1,50 +1,28 @@
-# Documento de Especificación Funcional (DEF)
-## Proyecto: Portal inmobiliario B2B con filtros por zona y captura de leads
-> **Autor:** Valeria (Analista Funcional Lead & Product Owner de Miguel Bellido AI)
-> **Fecha:** 23/11/2026 • **Cliente:** Cliente Real
-> **Deadline Estricto:** 3 a 4 horas (Entrega Urgente Express en Producción Vercel)
+# Especificación Funcional: LOGISTIQ B2B Portal Inmobiliario con Filtros
 
----
+## 1. Visión y Objetivos
+- **Cliente:** Cliente Real / Institucional
+- **Industria:** Real Estate Corporativo, Parques Industriales & Logística Triple A
+- **Objetivo Primario:** Captar inquilinos e inversores corporativos que buscan activos logísticos e industriales en Argentina con rentabilidad en dólares y filtros avanzados.
 
-### 1. Modelo de Negocio y Público Objetivo
-Venta directa B2C y B2B de productos con alta rotación. Propuesta de valor: catálogo visual moderno, sin fricción de registro, compra inmediata a WhatsApp con mensaje estructurado y total en ARS.
+## 2. Historias de Usuario con Criterios de Aceptación (Gherkin BDD)
 
-### 2. Flujo de Usuario & Conversión (User Journey)
-1. Usuario ingresa a la landing page mobile-first.
-2. Filtra por categorías y productos con % de descuento.
-3. Selecciona artículos y presiona "Pedir por WhatsApp".
-4. Se abre chat de WhatsApp con pedido pre-armado y datos de envío.
+### US-01: Búsqueda y Filtrado en Tiempo Real Multivariable
+- **Given** que un director de operaciones o inversor ingresa al portal
+- **When** selecciona tipología ("Nave Logística"), zona ("Parque Industrial Pilar") y superficie mínima ("+5.000 m²")
+- **Then** el catálogo se filtra instantáneamente en sub-50ms sin recargar la página y actualiza el contador de activos disponibles.
 
-### 3. User Stories & Criterios de Aceptación (Gherkin BDD)
-```gherkin
-Característica: Conversión rápida y checkout transaccional
-  Escenario: Usuario explora catálogo y realiza pedido
-    Dado que un usuario ingresa a la plataforma web
-    Cuando selecciona productos con descuento y abre el carrito
-    Entonces el sistema calcula el subtotal y habilita el botón "Pedir por WhatsApp"
-    Y al hacer click, se abre el chat directo con el decisor comercial con el pedido estructurado.
-```
+### US-02: Simulador Financiero de Cap Rate & NOI
+- **Given** que un inversor evalúa adquirir un inmueble comercial
+- **When** ajusta el precio de adquisición y la renta proyectada con los sliders interactivos
+- **Then** el sistema recalcula en tiempo real el Cap Rate anual neto, el ingreso operativo neto (NOI) y los años de amortización.
 
-### 4. Entidades & Modelo de Datos
-• Producto: id, nombre, descripción, precio, % descuento, stock, foto, categoría.
-• Pedido: id, cliente, teléfono, items[], totalARS, estado.
-• Backoffice: gestión de inventario y personalización de banners y colores.
+### US-03: Ficha Técnica y Contacto Directo con Broker
+- **Given** que el usuario hace click en un activo disponible
+- **When** abre el modal de detalle técnico
+- **Then** visualiza las especificaciones de carga en m², altura libre de cumbrera, docks hidráulicos, zonificación y botón directo de WhatsApp para agendar visita técnica con el broker responsable.
 
-### 5. Integraciones Externas & Backoffice
-API de WhatsApp Directo (wa.me), Base de datos PostgreSQL para catálogo y stock, Webhook a Google Sheets / CRM y despliegue serverless en Vercel.
-
-### 6. Criterios de Aceptación para Producción en Vercel (Definition of Done)
-• Mobile-first responsive validado de 375px a 1440px.
-• Core Web Vitals: LCP menor a 1.2s, cero layout shift.
-• Suite E2E de Joaquín QA en Vercel con Playwright aprobada al 100%.
-• Cero errores en consola de JavaScript y conexión SSL/HTTPS estricta.
-
----
-
-### 7. Matriz de Transmisión al Equipo de Especialistas
-- **Lucas (Frontend):** Scaffolding en React 19 + Tailwind CSS, catálogo interactivo y responsive mobile-first.
-- **Mateo (Backend):** Estructura de datos PostgreSQL, persistencia y endpoints con latencia mínima.
-- **Tomás (UI/UX):** Tokens semánticos, diseño moderno, micro-interacciones de compra y contraste accesible.
-- **Sofía (DevOps):** Repositorio en GitHub personal y pipeline de despliegue continuo en Vercel.
-- **Martina (Seguridad):** Auditoría AppSec, sanitización de inputs y políticas OWASP.
-- **Joaquín (Testing QA):** Batería de tests Playwright E2E y smoke tests previos al release.
+## 3. Definition of Done (DoD)
+1. 100% responsive en viewports móviles (375px a 430px) y desktop 1440px.
+2. Cero errores de build en Vercel Edge Network.
+3. Microdatos JSON-LD RealEstateAgent validados para indexación SEO institucional.
