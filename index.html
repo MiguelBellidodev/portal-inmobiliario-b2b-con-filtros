@@ -1,65 +1,724 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portal inmobiliario B2B con filtros… - Plataforma Oficial</title>
+  <title>LOGISTIQ B2B — Plataforma Inmobiliaria Corporativa & Parques Industriales</title>
+  <meta name="description" content="Portal inmobiliario corporativo B2B con filtros avanzados por zona, superficie m², cap rate y tipología. Naves industriales, centros logísticos y oficinas Triple A en Argentina." />
+  
+  <!-- Open Graph & Twitter Cards -->
+  <meta property="og:title" content="LOGISTIQ B2B — Inmuebles Industriales & Corporativos" />
+  <meta property="og:description" content="Buscador inteligente con filtros en tiempo real, cálculo de rentabilidad Cap Rate y contacto directo con brokers corporativos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Fonts & Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
   <style>
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-fade-in-up { animation: fadeInUp 0.6s ease-out both; }
-    .animate-delay-1 { animation-delay: 0.1s; }
-    .animate-delay-2 { animation-delay: 0.2s; }
-    .animate-delay-3 { animation-delay: 0.3s; }
+    .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .font-sans { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    :root {
+      --bg-warm: #FAF9F6;
+      --surface-card: #FFFFFF;
+      --accent-gold: #C5A059;
+      --accent-slate: #1E293B;
+      --border-warm: #EAE6DF;
+    }
+    
+    body {
+      background-color: var(--bg-warm);
+      color: #1A1A1A;
+    }
+    
+    .gold-border-hover:hover {
+      border-color: var(--accent-gold);
+    }
   </style>
+
+  <!-- Schema.org JSON-LD para SEO Inmobiliario Institucional -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "LOGISTIQ B2B Real Estate",
+    "description": "Comercialización exclusiva de activos inmobiliarios logísticos, naves industriales y plantas corporativas Triple A.",
+    "areaServed": "Argentina - Región Metropolitana de Buenos Aires y Corredores Productivos",
+    "currenciesAccepted": "USD"
+  }
+  </script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
-  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="size-9 sm:size-10 rounded-xl bg-gradient-to-tr from-pink-500 to-violet-600 flex items-center justify-center font-black text-white shadow-lg text-lg">⚡</div>
-        <span class="text-lg sm:text-2xl font-extrabold text-white truncate max-w-[200px] sm:max-w-none">Portal inmobiliario B2B con filtros…</span>
+<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-[#C5A059] selection:text-white">
+
+  <!-- Top Bar Institucional -->
+  <aside class="bg-[#1C1D21] text-stone-300 text-xs py-2 px-6 border-b border-stone-800">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-4 text-[11px] tracking-wider uppercase font-mono">
+        <span class="inline-flex items-center gap-1.5"><span class="size-2 rounded-full bg-emerald-500 animate-pulse"></span> Mercado B2B Activo</span>
+        <span class="text-stone-600 hidden sm:inline">|</span>
+        <span class="text-stone-400 hidden sm:inline">Cap Rate Promedio 2026: <strong>8.8% Anual USD</strong></span>
       </div>
-      <a href="https://wa.me/543517894847?text=Hola%20quiero%20consultar%20sobre%20Portal%20inmobiliario%20B2B%20con%20filtros%E2%80%A6" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-lg transition text-xs sm:text-sm whitespace-nowrap">
-        💬 WhatsApp
-      </a>
+      <div class="flex items-center gap-6 text-[11px] tracking-wide">
+        <a href="#calculadora" class="hover:text-amber-400 transition font-medium">Simulador de Inversión</a>
+        <a href="https://wa.me/543517894847?text=Hola%20deseo%20asesoramiento%20B2B%20inmobiliario" target="_blank" class="text-amber-400 hover:underline font-semibold flex items-center gap-1">
+          <span>Broker On-Call 24/7</span> ➔
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Header & Navegación -->
+  <header class="border-b border-[#EAE6DF] bg-white/90 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="size-11 rounded-xl bg-[#1C1D21] text-amber-400 font-serif text-2xl font-bold flex items-center justify-center border border-amber-500/30 shadow-md">
+          L
+        </div>
+        <div>
+          <span class="font-serif text-2xl font-bold tracking-tight text-stone-900">LOGISTIQ<span class="text-[#C5A059]">.</span>B2B</span>
+          <span class="block text-[10px] uppercase font-mono tracking-widest text-stone-600 font-medium">Inmuebles Industriales & Corporativos</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-stone-600">
+        <a href="#buscador" class="hover:text-stone-900 transition">Buscador</a>
+        <a href="#propiedades" class="hover:text-stone-900 transition">Activos Disponibles</a>
+        <a href="#calculadora" class="hover:text-stone-900 transition">Calculadora ROI</a>
+        <a href="#dossier" class="hover:text-stone-900 transition">Dossier Inversores</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openLeadModal('Consulta Institucional General')" class="px-5 py-2.5 rounded-xl bg-[#1C1D21] text-white hover:bg-stone-800 text-xs font-semibold uppercase tracking-wider transition shadow-sm border border-stone-800">
+          Solicitar Visita Técnica
+        </button>
+      </div>
     </div>
   </header>
-  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 border-b border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950">
-    <div class="max-w-4xl mx-auto text-center space-y-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider animate-fade-in-up">🟢 Producción Activa en Vercel</div>
-      <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight animate-fade-in-up animate-delay-1">Portal inmobiliario B2B con filtros…</h1>
-      <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animate-delay-2">Proyecto relevado y aprobado por Valeria (Analista Funcional Lead): "Portal inmobiliario B2B con filtros por zona y captura de leads". Especificación técnica documentada en Obsidian.</p>
-      <div class="pt-4 flex flex-wrap justify-center gap-3 sm:gap-4 animate-fade-in-up animate-delay-3">
-        <a href="https://wa.me/543517894847?text=Quiero%20iniciar%20un%20proyecto" target="_blank" class="bg-violet-600 hover:bg-violet-500 text-white font-bold px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl shadow-xl transition text-sm sm:text-base">Contactar</a>
-        <a href="https://github.com/MiguelBellidodev/portal-inmobiliario-b2b-con-filtros" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl border border-slate-700 transition text-sm sm:text-base">GitHub</a>
+
+  <!-- Hero Section con Propuesta de Valor B2B -->
+  <main class="flex-1">
+    <section class="relative py-16 sm:py-24 px-6 border-b border-[#EAE6DF] overflow-hidden bg-gradient-to-b from-[#F5F2EB] to-[#FAF9F6]">
+      <div class="max-w-5xl mx-auto text-center space-y-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-[#9E7B35] text-xs font-bold tracking-widest uppercase font-mono">
+          🏛️ Activos Triple A con Renta en Dólares & Contratos a Largo Plazo
+        </div>
+        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-normal text-stone-900 leading-[1.1]">
+          Infraestructura logística e industrial para <em class="font-serif italic font-medium">grandes corporaciones.</em>
+        </h1>
+        <p class="text-base sm:text-lg text-stone-600 max-w-3xl mx-auto leading-relaxed font-normal">
+          Acceda a la cartera más sólida de naves de almacenamiento, cross-docking, predios industriales y oficinas corporativas con certificación LEED y retornos proyectados auditados.
+        </p>
+
+        <!-- Métricas Rápidas -->
+        <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+          <div class="bg-white p-4 rounded-xl border border-stone-200/80 shadow-sm">
+            <span class="block text-2xl font-serif font-bold text-stone-900">+185.000 m²</span>
+            <span class="text-xs text-stone-600 uppercase font-medium">Superficie Gestionada</span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-stone-200/80 shadow-sm">
+            <span class="block text-2xl font-serif font-bold text-amber-700">8.5% - 11.2%</span>
+            <span class="text-xs text-stone-600 uppercase font-medium">Cap Rate Neto en USD</span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-stone-200/80 shadow-sm">
+            <span class="block text-2xl font-serif font-bold text-stone-900">Triple A</span>
+            <span class="text-xs text-stone-600 uppercase font-medium">Estándar Constructivo</span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-stone-200/80 shadow-sm">
+            <span class="block text-2xl font-serif font-bold text-emerald-600">100% Auditado</span>
+            <span class="text-xs text-stone-600 uppercase font-medium">Due Diligence Legal</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOTOR DE BÚSQUEDA Y FILTROS INTERACTIVOS B2B -->
+    <section id="buscador" class="max-w-7xl mx-auto px-6 -mt-8 relative z-30">
+      <div class="bg-white rounded-2xl border border-stone-200 p-6 shadow-xl space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-stone-100 pb-4">
+          <div>
+            <h2 class="text-lg font-bold text-stone-900 flex items-center gap-2">
+              <span>🔍 Filtros de Búsqueda Avanzada B2B</span>
+              <span id="results-count" class="text-xs font-mono bg-stone-100 text-stone-700 px-2 py-0.5 rounded-full font-semibold">6 activos encontrados</span>
+            </h2>
+            <p class="text-xs text-stone-600 mt-0.5">Filtre por tipología técnica, corredor logístico, superficie cubierta y retorno exigido.</p>
+          </div>
+          <button onclick="resetFilters()" class="text-xs font-medium text-stone-600 hover:text-stone-900 underline">
+            Reestablecer Filtros
+          </button>
+        </div>
+
+        <!-- Controles de Filtro -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <!-- 1. Tipología -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5">Tipología</label>
+            <select id="filter-type" onchange="applyFilters()" class="w-full text-xs font-medium bg-stone-50 border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+              <option value="all">Todas las tipologías</option>
+              <option value="nave">Naves Industriales & Logísticas</option>
+              <option value="crossdock">Centros de Cross-Docking</option>
+              <option value="oficina">Plantas Libres de Oficina AAA</option>
+              <option value="terreno">Predios en Parques Industriales</option>
+            </select>
+          </div>
+
+          <!-- 2. Ubicación / Corredor -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5">Ubicación / Corredor</label>
+            <select id="filter-zone" onchange="applyFilters()" class="w-full text-xs font-medium bg-stone-50 border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+              <option value="all">Todos los corredores</option>
+              <option value="pilar">Parque Industrial Pilar (RN8)</option>
+              <option value="norte">Corredor Panamericana (RN9)</option>
+              <option value="oeste">Acceso Oeste & Buen Ayre</option>
+              <option value="sur">Corredor Sur / La Plata</option>
+              <option value="caba">CABA Distrito Tecnológico</option>
+            </select>
+          </div>
+
+          <!-- 3. Superficie Mínima m² -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5">Superficie Mínima</label>
+            <select id="filter-surface" onchange="applyFilters()" class="w-full text-xs font-medium bg-stone-50 border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+              <option value="0">Cualquier superficie</option>
+              <option value="1500">+1.500 m²</option>
+              <option value="3000">+3.000 m²</option>
+              <option value="6000">+6.000 m²</option>
+              <option value="10000">+10.000 m²</option>
+            </select>
+          </div>
+
+          <!-- 4. Rango de Presupuesto USD -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5">Precio Máx (USD)</label>
+            <select id="filter-price" onchange="applyFilters()" class="w-full text-xs font-medium bg-stone-50 border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+              <option value="99999999">Sin límite de precio</option>
+              <option value="1500000">Hasta USD 1.500.000</option>
+              <option value="3500000">Hasta USD 3.500.000</option>
+              <option value="7000000">Hasta USD 7.000.000</option>
+            </select>
+          </div>
+
+          <!-- 5. Cap Rate Mínimo -->
+          <div>
+            <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5">Cap Rate Mínimo</label>
+            <select id="filter-caprate" onchange="applyFilters()" class="w-full text-xs font-medium bg-stone-50 border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+              <option value="0">Cualquier rentabilidad</option>
+              <option value="8.0">+8.0% Anual USD</option>
+              <option value="9.0">+9.0% Anual USD</option>
+              <option value="10.0">+10.0% Anual USD</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID DE PROPIEDADES CORPORATIVAS DISPONIBLES -->
+    <section id="propiedades" class="max-w-7xl mx-auto px-6 py-16 space-y-8">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-stone-200 pb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-[#9E7B35] font-mono">PORTAFOLIO EXCLUSIVO B2B</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-normal text-stone-900 mt-1">Activos Inmobiliarios Disponibles</h2>
+        </div>
+        <div class="text-xs text-stone-500 font-mono">
+          Operaciones sujetas a NDA de confidencialidad institucional.
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="properties-grid">
+        <!-- Las propiedades se renderizan y filtran dinámicamente con JavaScript -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-stone-200 p-8 space-y-4">
+        <span class="text-5xl">🏢</span>
+        <h3 class="text-lg font-bold text-stone-900">No encontramos inmuebles con ese criterio exacto</h3>
+        <p class="text-xs text-stone-500 max-w-md mx-auto">Nuestro equipo de Off-Market cuenta con activos confidenciales que no se publican en abierto. Consúltenos de forma directa.</p>
+        <button onclick="resetFilters()" class="px-5 py-2 rounded-xl bg-stone-900 text-white text-xs font-semibold">
+          Reestablecer Filtros
+        </button>
+      </div>
+    </section>
+
+    <!-- CALCULADORA INTERACTIVA DE RENTABILIDAD & CAP RATE B2B -->
+    <section id="calculadora" class="bg-[#1C1D21] text-stone-100 py-20 px-6 border-y border-stone-800">
+      <div class="max-w-5xl mx-auto space-y-12">
+        <div class="text-center space-y-4">
+          <span class="text-xs font-mono uppercase tracking-widest text-amber-400 font-semibold">HERRAMIENTA FINANCIERA INSTITUCIONAL</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-normal text-white">Simulador de Cap Rate & Retorno Inmobiliario</h2>
+          <p class="text-sm text-stone-400 max-w-2xl mx-auto font-light">
+            Proyecte el rendimiento operativo neto (NOI) y el período estimado de amortización de su inversión industrial en dólares.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 bg-stone-900/90 rounded-2xl border border-stone-800 p-6 sm:p-10 shadow-2xl">
+          <!-- Controles / Sliders -->
+          <div class="md:col-span-7 space-y-6">
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-2">
+                <span class="text-stone-300">Valor de Adquisición (USD):</span>
+                <span id="calc-val-price" class="text-amber-400 font-bold">$2.500.000 USD</span>
+              </div>
+              <input type="range" id="slider-price" min="500000" max="10000000" step="100000" value="2500000" oninput="calculateYield()" class="w-full accent-amber-500 h-2 bg-stone-800 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-2">
+                <span class="text-stone-300">Renta Mensual Estimada (USD):</span>
+                <span id="calc-val-rent" class="text-amber-400 font-bold">$19.500 USD/mes</span>
+              </div>
+              <input type="range" id="slider-rent" min="4000" max="90000" step="500" value="19500" oninput="calculateYield()" class="w-full accent-amber-500 h-2 bg-stone-800 rounded-lg cursor-pointer">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-2">
+                <span class="text-stone-300">Gastos Operativos & Mantenimiento (%):</span>
+                <span id="calc-val-opex" class="text-amber-400 font-bold">8.0%</span>
+              </div>
+              <input type="range" id="slider-opex" min="3" max="20" step="0.5" value="8" oninput="calculateYield()" class="w-full accent-amber-500 h-2 bg-stone-800 rounded-lg cursor-pointer">
+            </div>
+
+            <div class="pt-2 text-[11px] text-stone-500 font-mono">
+              * Modelo calculado bajo estructura de contrato Triple Net Lease (NNN) a 60-120 meses.
+            </div>
+          </div>
+
+          <!-- Métricas de Salida -->
+          <div class="md:col-span-5 bg-[#141518] rounded-xl border border-stone-800 p-6 flex flex-col justify-between space-y-6">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-stone-400 font-semibold">Rentabilidad Neta Proyectada</span>
+              <div class="text-4xl sm:text-5xl font-serif font-bold text-amber-400 mt-2" id="calc-result-caprate">
+                8.61%
+              </div>
+              <span class="text-xs text-stone-400">Cap Rate Anual Neto (USD)</span>
+            </div>
+
+            <div class="border-t border-stone-800 pt-4 space-y-3 font-mono text-xs">
+              <div class="flex justify-between">
+                <span class="text-stone-400">Ingreso Anual Bruto:</span>
+                <span id="calc-result-gross" class="text-white font-semibold">$234.000 USD</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-stone-400">NOI (Ingreso Neto Operativo):</span>
+                <span id="calc-result-noi" class="text-emerald-400 font-semibold">$215.280 USD</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-stone-400">Período de Amortización:</span>
+                <span id="calc-result-payback" class="text-white font-semibold">11.6 Años</span>
+              </div>
+            </div>
+
+            <button onclick="openLeadModal('Simulación Financiera Cap Rate ' + document.getElementById('calc-result-caprate').innerText)" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs uppercase tracking-wider transition shadow-lg">
+              Descargar Informe Financiero
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOSSIER & ESPECIFICACIONES TÉCNICAS -->
+    <section id="dossier" class="py-20 px-6 max-w-6xl mx-auto space-y-12">
+      <div class="text-center space-y-4">
+        <span class="text-xs font-mono uppercase tracking-widest text-[#9E7B35] font-semibold">CRITERIOS TÉCNICOS DE ALTA EXIGENCIA</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-normal text-stone-900">Por qué las empresas líderes eligen nuestros activos</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl border border-stone-200 p-8 space-y-4 hover:shadow-lg transition">
+          <div class="size-12 rounded-xl bg-stone-100 flex items-center justify-center text-2xl">🚛</div>
+          <h3 class="font-serif text-xl font-bold text-stone-900">Pisos Láser & Alturas Libres</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Resistencia mecánica de pisos de 6 a 8 tn/m² con nivelación láser y alturas libres de cumbrera de 12 a 14 metros, aptas para sistemas de racks automáticos y transelevadores.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-stone-200 p-8 space-y-4 hover:shadow-lg transition">
+          <div class="size-12 rounded-xl bg-stone-100 flex items-center justify-center text-2xl">⚡</div>
+          <h3 class="font-serif text-xl font-bold text-stone-900">Potencia & Red Contra Incendio</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Subestaciones transformadoras dedicadas de media tensión (+1000 kVA), red de sprinklers bajo norma NFPA 13 con bombas diésel de reserva y tanques de agua propios.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-stone-200 p-8 space-y-4 hover:shadow-lg transition">
+          <div class="size-12 rounded-xl bg-stone-100 flex items-center justify-center text-2xl">📋</div>
+          <h3 class="font-serif text-xl font-bold text-stone-900">Habilitación I1 & Zonificación</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Predios con categoría industrial apta para industrias de grado 1, 2 y 3. Título de propiedad perfecto, escrituración inmediata y exenciones impositivas provinciales.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL DE DETALLE DE PROPIEDAD -->
+  <div id="property-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-stone-200 shadow-2xl p-6 sm:p-8 space-y-6">
+      <div class="flex justify-between items-start border-b border-stone-200 pb-4">
+        <div>
+          <span id="modal-tag" class="text-[10px] font-mono uppercase tracking-widest font-bold px-2.5 py-1 rounded bg-amber-100 text-amber-800">Triple A</span>
+          <h3 id="modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-2">Centro Logístico Pilar 01</h3>
+          <p id="modal-location" class="text-xs text-stone-500 font-mono mt-1">📍 Parque Industrial Pilar, RN8 km 60</p>
+        </div>
+        <button onclick="closePropertyModal()" class="text-stone-400 hover:text-stone-900 text-2xl font-light">✕</button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-stone-50 p-4 rounded-xl border border-stone-200 text-xs font-mono">
+        <div>
+          <span class="text-stone-500 block">Superficie:</span>
+          <strong id="modal-surface" class="text-stone-900 text-sm">8.200 m²</strong>
+        </div>
+        <div>
+          <span class="text-stone-500 block">Precio Adquisición:</span>
+          <strong id="modal-price" class="text-stone-900 text-sm">USD 4.800.000</strong>
+        </div>
+        <div>
+          <span class="text-stone-500 block">Cap Rate:</span>
+          <strong id="modal-caprate" class="text-amber-700 text-sm">9.4% Anual</strong>
+        </div>
+        <div>
+          <span class="text-stone-500 block">Docks de Carga:</span>
+          <strong id="modal-docks" class="text-stone-900 text-sm">12 Hidráulicos</strong>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-800">Especificaciones de Planta & Estándar Técnico</h4>
+        <p id="modal-desc" class="text-xs text-stone-600 leading-relaxed">
+          Nave logística premium con 12 metros de altura libre, piso sin juntas de 7 tn/m², 12 docks niveladores con abrigo estanco, iluminación 100% LED de alta eficiencia y oficinas corporativas integradas en dos plantas.
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 space-y-2">
+        <div class="flex items-center gap-2 text-xs font-bold text-amber-900">
+          <span>📄 Dossier Técnico & Plano de Arquitectura Disponible</span>
+        </div>
+        <p class="text-[11px] text-amber-800">
+          Incluye memoria de cálculo estructural, estudio de suelos, plano en CAD/DWG, diagrama de flujo de camiones y contrato modelo de locación NNN.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <button onclick="simulatePdfDownload()" class="flex-1 py-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold text-xs uppercase tracking-wider transition border border-stone-300 flex items-center justify-center gap-2">
+          <span>📥 Descargar Ficha Técnica PDF</span>
+        </button>
+        <button id="modal-wa-btn" onclick="openWhatsAppForProperty()" class="flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition shadow flex items-center justify-center gap-2">
+          <span>💬 Agendar Visita con Broker</span>
+        </button>
       </div>
     </div>
-  </section>
-  <section class="py-12 sm:py-16 px-4 sm:px-6">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">Funcionalidades</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        <div class="p-5 sm:p-6 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-3">
-          <div class="text-2xl">📱</div>
-          <h3 class="font-bold text-white">Responsive Mobile-First</h3>
-          <p class="text-sm text-slate-400">Diseño adaptable desde 375px hasta 1440px con Core Web Vitals optimizados (LCP < 1.2s).</p>
+  </div>
+
+  <!-- MODAL DE CONTACTO / LEAD B2B -->
+  <div id="lead-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full border border-stone-200 shadow-2xl p-6 sm:p-8 space-y-5">
+      <div class="flex justify-between items-start border-b border-stone-200 pb-3">
+        <div>
+          <h3 class="font-serif text-2xl font-bold text-stone-900">Atención Institucional B2B</h3>
+          <p id="lead-modal-subtitle" class="text-xs text-stone-500 mt-1">Coordinación directa con Dirección Comercial</p>
         </div>
-        <div class="p-5 sm:p-6 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-3">
-          <div class="text-2xl">🔒</div>
-          <h3 class="font-bold text-white">Seguridad AppSec</h3>
-          <p class="text-sm text-slate-400">Headers CSP, HTTPS estricto, sanitización de inputs y auditoría de seguridad por Martina.</p>
+        <button onclick="closeLeadModal()" class="text-stone-400 hover:text-stone-900 text-2xl font-light">✕</button>
+      </div>
+
+      <form onsubmit="handleLeadSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1">Nombre Completo</label>
+          <input type="text" id="lead-name" required placeholder="Ing. Carlos Menéndez" class="w-full text-xs bg-stone-50 border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none">
         </div>
-        <div class="p-5 sm:p-6 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-3">
-          <div class="text-2xl">🧪</div>
-          <h3 class="font-bold text-white">Testing E2E</h3>
-          <p class="text-sm text-slate-400">Suite automatizada de Playwright certificada por Joaquín (QA Lead) antes de cada release.</p>
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1">Empresa / Razón Social</label>
+          <input type="text" id="lead-company" required placeholder="Logística Andina S.A." class="w-full text-xs bg-stone-50 border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none">
         </div>
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1">Teléfono / WhatsApp Directo</label>
+          <input type="tel" id="lead-phone" required placeholder="+54 9 11 4567-8900" class="w-full text-xs bg-stone-50 border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1">Requerimiento o Activo de Interés</label>
+          <textarea id="lead-notes" rows="2" placeholder="Búsqueda de 5.000 m² en Zona Norte para depósito farmacéutico con control de temperatura..." class="w-full text-xs bg-stone-50 border border-stone-300 rounded-lg p-2.5 focus:ring-2 focus:ring-amber-500 focus:outline-none"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-[#1C1D21] hover:bg-stone-800 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg">
+          Enviar y Contactar por WhatsApp Inmediato
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer Institucional -->
+  <footer class="border-t border-stone-200 bg-white py-12 px-6 text-stone-500 text-xs">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="space-y-1 text-center md:text-left">
+        <span class="font-serif text-lg font-bold text-stone-900">LOGISTIQ B2B</span>
+        <p class="text-stone-400 text-[11px]">Plataforma y Brokerage Inmobiliario Industrial & Corporativo • Argentina</p>
+      </div>
+      <div class="flex gap-6 text-[11px] uppercase tracking-wider font-medium">
+        <a href="#buscador" class="hover:text-stone-900 transition">Buscador</a>
+        <a href="#calculadora" class="hover:text-stone-900 transition">Calculadora</a>
+        <a href="https://github.com/MiguelBellidodev/portal-inmobiliario-b2b-con-filtros" target="_blank" class="hover:text-stone-900 transition">Código GitHub</a>
+      </div>
+      <div class="text-[11px] text-stone-400">
+        Desarrollado y desplegado de forma 100% autónoma por la <strong>Agencia Miguel Bellido AI</strong>
       </div>
     </div>
-  </section>
-  <footer class="border-t border-slate-800 py-6 sm:py-8 text-center text-xs text-slate-500 mt-auto px-4">
-    Desarrollado y desplegado por <strong>Agencia Miguel Bellido AI</strong> • Producción en Vercel
   </footer>
+
+  <!-- LÓGICA INTERACTIVA EN TIEMPO REAL -->
+  <script>
+    const PROPERTIES_DATA = [
+      {
+        id: 1,
+        title: "Centro Logístico Pilar Industrial Park",
+        type: "nave",
+        zone: "pilar",
+        surface: 8200,
+        price: 4800000,
+        capRate: 9.4,
+        docks: 12,
+        height: "12.5 m",
+        tag: "Triple A",
+        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
+        description: "Nave logística de última generación sobre RN8. Piso láser sin juntas de 7 tn/m², 12 docks hidráulicos con rampa deprimida, red de incendio NFPA con sprinklers ESFR y 400 m² de oficinas gerenciales."
+      },
+      {
+        id: 2,
+        title: "Cross-Docking Hub Norte Panamericana",
+        type: "crossdock",
+        zone: "norte",
+        surface: 5400,
+        price: 3600000,
+        capRate: 10.2,
+        docks: 24,
+        height: "10.0 m",
+        tag: "Alta Renta",
+        image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80",
+        description: "Centro de transferencia y consolidación rápida de cargas con 24 compuertas bilaterales. Playa de maniobras de hormigón H30 de 45 metros y control de accesos automatizado."
+      },
+      {
+        id: 3,
+        title: "Edificio Corporativo Catalinas Norte",
+        type: "oficina",
+        zone: "caba",
+        surface: 1850,
+        price: 3100000,
+        capRate: 8.2,
+        docks: 0,
+        height: "3.4 m",
+        tag: "LEED Gold",
+        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+        description: "Planta libre corporativa en piso completo con vista al Río de la Plata. Certificación LEED Gold, piso técnico elevado, climatización VRV Daikin y 22 cocheras subterráneas."
+      },
+      {
+        id: 4,
+        title: "Planta Industrial Farmacéutica Acceso Oeste",
+        type: "nave",
+        zone: "oeste",
+        surface: 4200,
+        price: 2900000,
+        capRate: 8.9,
+        docks: 6,
+        height: "11.0 m",
+        tag: "Zonificación I2",
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+        description: "Planta acondicionada con paneles térmicos PIR y áreas clasificadas GMP. Subestación transformadora de 1250 kVA y planta de tratamiento de efluentes aprobada."
+      },
+      {
+        id: 5,
+        title: "Macrolote Industrial & Logístico Km 42",
+        type: "terreno",
+        zone: "norte",
+        surface: 15000,
+        price: 1800000,
+        capRate: 7.8,
+        docks: 0,
+        height: "Terreno",
+        tag: "Escritura Inmediata",
+        image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
+        description: "Fracción de 15.000 m² sobre colectora principal con acceso directo a pavimento pesado. Gas industrial de media presión y factibilidad eléctrica de Edenor confirmada."
+      },
+      {
+        id: 6,
+        title: "Parque Logístico Sur Berazategui",
+        type: "nave",
+        zone: "sur",
+        surface: 9800,
+        price: 5200000,
+        capRate: 9.8,
+        docks: 16,
+        height: "13.0 m",
+        tag: "Inquilino AAA",
+        image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80",
+        description: "Activo con contrato de locación a 10 años en dólares con multinacional de retail. Rentabilidad inmediata del 9.8% anual garantizada por fianza corporativa internacional."
+      }
+    ];
+
+    let currentSelectedProperty = null;
+
+    function renderProperties(items) {
+      const grid = document.getElementById('properties-grid');
+      const countEl = document.getElementById('results-count');
+      const noResults = document.getElementById('no-results');
+
+      grid.innerHTML = '';
+      countEl.innerText = items.length + ' activos encontrados';
+
+      if (items.length === 0) {
+        noResults.classList.remove('hidden');
+        return;
+      } else {
+        noResults.classList.add('hidden');
+      }
+
+      items.forEach(p => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer";
+        card.onclick = () => openPropertyModal(p.id);
+
+        card.innerHTML = `
+          <div class="relative aspect-[16/10] overflow-hidden bg-stone-100">
+            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 text-[10px] uppercase font-mono tracking-wider font-bold px-2.5 py-1 rounded-full bg-white/95 text-stone-900 shadow">
+              ${p.tag}
+            </span>
+            <div class="absolute bottom-3 left-3 right-3 flex justify-between items-end text-white">
+              <span class="font-mono text-xs font-semibold bg-emerald-600/90 px-2 py-0.5 rounded">Cap Rate: ${p.capRate}% USD</span>
+              <span class="text-xs font-mono font-medium">${p.surface.toLocaleString('es-AR')} m²</span>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex justify-between items-baseline gap-2">
+                <h3 class="font-serif text-xl font-bold text-stone-900 leading-snug group-hover:text-amber-700 transition">${p.title}</h3>
+              </div>
+              <p class="text-xs text-stone-500 font-mono mt-1">📍 ${p.zone.toUpperCase()} • ${p.height} altura</p>
+              <p class="text-xs text-stone-600 mt-3 line-clamp-2 leading-relaxed">${p.description}</p>
+            </div>
+            
+            <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono uppercase text-stone-400 block">Inversión</span>
+                <span class="font-mono font-bold text-base text-stone-900">USD $${p.price.toLocaleString('es-AR')}</span>
+              </div>
+              <button onclick="event.stopPropagation(); openPropertyModal(${p.id})" class="px-3.5 py-1.5 rounded-lg bg-stone-100 group-hover:bg-[#1C1D21] group-hover:text-white text-stone-800 text-xs font-semibold transition">
+                Ficha Técnica ➔
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function applyFilters() {
+      const type = document.getElementById('filter-type').value;
+      const zone = document.getElementById('filter-zone').value;
+      const minSurface = parseInt(document.getElementById('filter-surface').value, 10) || 0;
+      const maxPrice = parseInt(document.getElementById('filter-price').value, 10) || 99999999;
+      const minCapRate = parseFloat(document.getElementById('filter-caprate').value) || 0;
+
+      const filtered = PROPERTIES_DATA.filter(p => {
+        if (type !== 'all' && p.type !== type) return false;
+        if (zone !== 'all' && p.zone !== zone) return false;
+        if (p.surface < minSurface) return false;
+        if (p.price > maxPrice) return false;
+        if (p.capRate < minCapRate) return false;
+        return true;
+      });
+
+      renderProperties(filtered);
+    }
+
+    function resetFilters() {
+      document.getElementById('filter-type').value = 'all';
+      document.getElementById('filter-zone').value = 'all';
+      document.getElementById('filter-surface').value = '0';
+      document.getElementById('filter-price').value = '99999999';
+      document.getElementById('filter-caprate').value = '0';
+      renderProperties(PROPERTIES_DATA);
+    }
+
+    function openPropertyModal(id) {
+      const p = PROPERTIES_DATA.find(x => x.id === id);
+      if (!p) return;
+      currentSelectedProperty = p;
+
+      document.getElementById('modal-title').innerText = p.title;
+      document.getElementById('modal-tag').innerText = p.tag;
+      document.getElementById('modal-location').innerText = '📍 Zona: ' + p.zone.toUpperCase() + ' • Altura libre: ' + p.height;
+      document.getElementById('modal-surface').innerText = p.surface.toLocaleString('es-AR') + ' m²';
+      document.getElementById('modal-price').innerText = 'USD $' + p.price.toLocaleString('es-AR');
+      document.getElementById('modal-caprate').innerText = p.capRate + '% Anual';
+      document.getElementById('modal-docks').innerText = p.docks > 0 ? (p.docks + ' Hidráulicos') : 'N/A';
+      document.getElementById('modal-desc').innerText = p.description;
+
+      document.getElementById('property-modal').classList.remove('hidden');
+    }
+
+    function closePropertyModal() {
+      document.getElementById('property-modal').classList.add('hidden');
+    }
+
+    function openWhatsAppForProperty() {
+      if (!currentSelectedProperty) return;
+      const msg = encodeURIComponent('Hola Broker B2B, solicito información y visita técnica para: ' + currentSelectedProperty.title + ' (Ref ID: ' + currentSelectedProperty.id + ', Superficie: ' + currentSelectedProperty.surface + 'm²)');
+      window.open('https://wa.me/543517894847?text=' + msg, '_blank');
+    }
+
+    function simulatePdfDownload() {
+      alert('📄 Generando Ficha Técnica Oficial B2B con planos y memoria de cálculo de: ' + (currentSelectedProperty ? currentSelectedProperty.title : 'Activo'));
+    }
+
+    function calculateYield() {
+      const price = parseFloat(document.getElementById('slider-price').value);
+      const rentMonthly = parseFloat(document.getElementById('slider-rent').value);
+      const opexPercent = parseFloat(document.getElementById('slider-opex').value) / 100;
+
+      document.getElementById('calc-val-price').innerText = '$' + price.toLocaleString('es-AR') + ' USD';
+      document.getElementById('calc-val-rent').innerText = '$' + rentMonthly.toLocaleString('es-AR') + ' USD/mes';
+      document.getElementById('calc-val-opex').innerText = (opexPercent * 100).toFixed(1) + '%';
+
+      const grossYearly = rentMonthly * 12;
+      const opexAmount = grossYearly * opexPercent;
+      const noi = grossYearly - opexAmount;
+      const capRate = (noi / price) * 100;
+      const payback = price / noi;
+
+      document.getElementById('calc-result-caprate').innerText = capRate.toFixed(2) + '%';
+      document.getElementById('calc-result-gross').innerText = '$' + Math.round(grossYearly).toLocaleString('es-AR') + ' USD';
+      document.getElementById('calc-result-noi').innerText = '$' + Math.round(noi).toLocaleString('es-AR') + ' USD';
+      document.getElementById('calc-result-payback').innerText = payback.toFixed(1) + ' Años';
+    }
+
+    function openLeadModal(context) {
+      document.getElementById('lead-modal-subtitle').innerText = 'Referencia: ' + context;
+      document.getElementById('lead-modal').classList.remove('hidden');
+    }
+
+    function closeLeadModal() {
+      document.getElementById('lead-modal').classList.add('hidden');
+    }
+
+    function handleLeadSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('lead-name').value;
+      const company = document.getElementById('lead-company').value;
+      const phone = document.getElementById('lead-phone').value;
+      const notes = document.getElementById('lead-notes').value;
+
+      const msg = encodeURIComponent('Hola Broker LOGISTIQ B2B, me contacto como ' + name + ' de ' + company + ' (Tel: ' + phone + '). Consulta: ' + notes);
+      window.open('https://wa.me/543517894847?text=' + msg, '_blank');
+      closeLeadModal();
+    }
+
+    // Inicializar
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProperties(PROPERTIES_DATA);
+      calculateYield();
+    });
+  </script>
 </body>
 </html>
