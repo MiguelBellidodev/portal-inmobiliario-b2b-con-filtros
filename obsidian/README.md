@@ -1,6 +1,3 @@
-# Proyecto: Portal inmobiliario B2B con filtros…
+# LOGISTIQ B2B — Documentación de Arquitectura y Especificación
 
-- Cliente: Cliente Real
-- Estado: En curso
-
-Carpeta de Obsidian sincronizada automáticamente con la Agencia.
+Carpeta de Obsidian sincronizada con la Agencia de Agentes IA de Miguel Bellido.
