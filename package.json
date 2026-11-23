@@ -1,0 +1,8 @@
+{
+  "name": "portal-inmobiliario-b2b-con-filtros",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo \"Build OK\""
+  }
+}
